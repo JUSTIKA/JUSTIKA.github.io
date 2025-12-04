@@ -1,13 +1,91 @@
-<html>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>(Re)Découvrir Bordeaux - Étape 4</title>
     <link rel="stylesheet" href="indexstyle.css">
-    <head>
-        <title>(Re)Découvrir Bordeaux</title>
-    <body>
-      <div class="title">
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi odio adipisci totam iste voluptatem perferendis enim nostrum culpa fuga rerum, officiis iure facilis dolorum quidem quas eum, alias delectus hic?</p>
-      </div>
-      <div class="button">
-        <a href="index.html">Retour à l'accueil</a>
-      </div>
-    </body>
+</head>
+<body>
+    <div class="container">
+        
+        <div class="texttitle">
+            <h3>Titre du Livre</h3>
+        </div>
+
+        <img src="chad.jpg" alt="Couverture du livre" class="book-cover">
+
+        <div class="extract">
+            <p>“Ceci est un court extrait du livre correspondant à ce lieu. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...”</p>
+        </div>
+
+        <div class="texttitle">
+            <h3>À propos de l'auteur</h3>
+        </div>
+        <div class="author-info">
+            <p>Un court paragraphe sur l'auteur. Il explique qui il est et son lien avec Bordeaux. Quasi odio adipisci totam iste voluptatem.</p>
+        </div>
+
+        <div class="texttitle">
+            <h3>Audio</h3>
+        </div>
+        <div class="audio">
+            <audio controls>
+                <source src="audiofile.mp3" type="audio/mpeg">
+                Votre navigateur ne supporte pas l'élément audio.
+            </audio>
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.3); margin: 3rem 0;">
+
+        <div class="game-section">
+            <div class="texttitle">
+                <h3>Le Défi du Lieu</h3>
+            </div>
+
+            <p>Vous avez découvert l'histoire ? Maintenant, prouvez que vous y êtes ! Chargez une photo du lieu pour révéler l'indice final.</p>
+
+            <div class="game-area" style="margin-bottom: 2rem;">
+                <input type="file" id="location-upload" accept="image/*" style="display: none;">
+                
+                <label for="location-upload" class="game-upload-btn">
+                    📷 Charger ma photo
+                </label>
+
+                <div id="clue-result" style="display: none;">
+                    <p>Bravo ! Voici le numéro de rue pour la prochaine étape :</p>
+                    <div class="clue-number">13</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="button-container">
+        <div class="button">
+            <a href="index.html">Retour à l'accueil</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('location-upload').addEventListener('change', function() {
+            if (this.files && this.files[0]) {
+                // Feedback visuel sur le bouton
+                const btn = document.querySelector('.game-upload-btn');
+                btn.innerHTML = "✅ Photo validée";
+                btn.style.backgroundColor = "#4CAF50"; 
+                btn.style.color = "white";
+                btn.style.boxShadow = "none";
+
+                // Affichage de l'indice
+                document.getElementById('clue-result').style.display = 'block';
+                
+                // Petit scroll automatique vers l'indice pour être sûr qu'il soit vu
+                setTimeout(() => {
+                    document.getElementById('clue-result').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 300);
+            }
+        });
+    </script>
+</body>
 </html>

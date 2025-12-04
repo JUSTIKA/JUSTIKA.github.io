@@ -1,116 +1,269 @@
+/* Import Google Fonts: Montserrat for titles, Merriweather for reading text */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Montserrat:wght@400;600;700&display=swap');
+
 body {
-    font-family: "Titillium Web", sans-serif;
-    background-color: #800020;
+    font-family: 'Merriweather', serif;
+    /* Couleur de repli */
+    background-color: #800020; 
+    /* Dégradé : centre plus clair, bords plus sombres pour effet focus */
+    background: radial-gradient(circle at center, #901030 0%, #500010 100%);
+    /* Motif subtil en superposition (optionnel, donne un grain papier) */
+    background-image: radial-gradient(#ffffff 1px, transparent 1px), radial-gradient(circle at center, #901030 0%, #500010 100%);
+    background-size: 40px 40px, 100% 100%;
+    background-blend-mode: overlay;
+    
+    color: whitesmoke;
+    margin: 0;
+    padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-left: 2rem;
-    padding-right: 2rem;
+    min-height: 100vh;
+}
+
+/* Container limits width on larger screens but fills mobile screens */
+.container {
+    width: 100%;
+    max-width: 600px;
+    padding: 2rem 1.5rem 7rem 1.5rem; /* Large bottom padding so text isn't hidden behind the button */
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* Headings */
+h1, h2, h3 {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0.5em 0;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+    color: whitesmoke;
 }
 
 h1 {
-  font-size: 60px;
-  color: whitesmoke;
-  font-weight: 700;
-  white-space: nowrap;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0;
-  text-shadow: black 2px 2px 4px;
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.1;
 }
 
 h2 {
-  font-size: 40px;
-  color: whitesmoke;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: center;  
-  text-shadow: black 2px 2px 4px;
-  position: absolute;
-  top: 45%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+    font-size: 1.8rem;
+    font-weight: 500;
+    opacity: 0.9;
+    margin-top: 0;
 }
 
 h3 {
-  font-size: 56px;
-  color: whitesmoke;
-  font-weight: 500;
-  margin-top: 4rem;
-  text-shadow: black 2px 2px 4px;
-  text-decoration: underline;
-  text-align: left;
+    font-size: 1.6rem;
+    text-align: left;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid antiquewhite;
+    display: inline-block;
 }
 
+/* Text Styling */
 p {
-  font-size: 32px;
-  color: whitesmoke;
-  font-weight: 400;
-  margin-left: 1rem;
-  margin-right: 1rem;
-  text-align: left;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    font-weight: 300;
+    text-align: justify;
+    margin-bottom: 1.5rem;
 }
 
-.button a {
-  display: flex;
-  align-items: center;
-  justify-content: center;  
-  text-decoration: none;
-  text-decoration-line: none;
-  font-size: 30px;
-  color: black;
+/* Special styling for the book extract */
+.extract {
+    background-color: rgba(0, 0, 0, 0.25); /* Un peu plus sombre */
+    padding: 2rem;
+    border-radius: 4px; /* Coins moins ronds pour faire plus "page" */
+    border-left: 4px solid antiquewhite;
+    border-right: 1px solid rgba(250, 235, 215, 0.3); /* Légère bordure à droite pour l'équilibre */
+    font-style: italic;
+    margin-bottom: 2rem;
+    text-align: left;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.5); /* Ombre intérieure pour la profondeur */
+    position: relative;
+}
+
+.extract p::first-letter {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3.5rem;
+    float: left;
+    line-height: 0.8;
+    margin-right: 12px;
+    margin-top: 5px;
+    font-weight: 700;
+    color: antiquewhite;
+    text-shadow: 2px 2px 0px #000;
+}
+
+.author-info {
+    font-size: 1rem;
+    opacity: 0.95;
+}
+
+/* Audio Player */
+audio {
+    width: 100%;
+    margin-top: 1rem;
+    height: 40px;
+    border-radius: 20px;
+}
+
+/* Sticky Bottom Button */
+.button-container {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    width: max-content;
 }
 
 .button {
-  border: none;
-  background-color: antiquewhite;
-  padding: 40px 64px;
-  display: flex;
-  text-decoration: none;
-  font-size: 18px;
-  margin: 4px 2px;
-  cursor: pointer;
-  width: fit-content;
-  height: fit-content;
-  border-radius: 40px;
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: antiquewhite;
+    border: none;
+    border-radius: 50px;
+    padding: 15px 35px;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    transition: transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  h1 {
-    font-size: 40px;
-    margin-top: 5rem;
-  }
+.button:active {
+    transform: scale(0.95);
+}
 
-  h2 {
-    font-size: 30px;
-  }
+.button a {
+    text-decoration: none;
+    color: #800020;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
 
-  h3 {
-    font-size: 16px;
-    margin-top: 5rem;
-  }
+/* Centering for the index page */
+.home-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 80vh;
+}
 
-  p {
-    font-size: 14px;
-    margin-left: 1rem;
-    margin-right: 1rem;
-  }
+.book-cover {
+    display: block;
+    max-width: 50%; /* L'image prendra la moitié de la largeur, idéal pour une couverture */
+    height: auto;
+    margin: 1rem auto 2rem auto; /* Centré horizontalement avec de l'espace autour */
+    border-radius: 8px; /* Coins légèrement arrondis */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5); /* Ombre portée pour donner du relief */
+    object-fit: cover;
+}
 
-  .button {
-    padding: 30px 54px;
-    font-size: 120px;
-    bottom: 10px;
-  }
+
+.game-upload-btn {
+    background-color: antiquewhite;
+    color: #800020;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: inline-block;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    margin: 1rem 0;
+    transition: transform 0.2s;
+    border: 2px solid transparent;
+}
+
+.game-upload-btn:active {
+    transform: scale(0.95);
+}
+
+/* Le numéro indice caché */
+#clue-result {
+    margin-top: 2rem;
+    padding: 2rem;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    border: 2px solid antiquewhite;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.clue-number {
+    font-size: 5rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    color: antiquewhite;
+    margin: 10px 0;
+    text-shadow: 4px 4px 0px #000;
+}
+
+/* Style pour les champs de texte du jeu QR6 */
+.game-input {
+    width: 80%; /* Assez large mais pas collé aux bords */
+    padding: 12px 15px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 25px; /* Arrondi comme les boutons */
+    background-color: rgba(255, 255, 255, 0.9);
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 1rem;
+    color: #333;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.game-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px antiquewhite;
+}
+
+/* Séparateur élégant qui s'efface sur les côtés */
+.separator {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(250, 235, 215, 0), rgba(250, 235, 215, 0.8), rgba(250, 235, 215, 0));
+    margin: 2.5rem auto;
+    width: 80%;
+}
+
+/* Variante avec un petit symbole au milieu (optionnel) */
+.separator-icon {
+    text-align: center;
+    margin: 2rem 0;
+    position: relative;
+}
+.separator-icon::before, .separator-icon::after {
+    content: "";
+    display: inline-block;
+    width: 30%;
+    height: 1px;
+    background: antiquewhite;
+    vertical-align: middle;
+    opacity: 0.5;
+}
+.separator-icon span {
+    color: antiquewhite;
+    padding: 0 10px;
+    font-size: 1.2rem;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive Tweaks */
+@media (max-width: 480px) {
+    h1 { font-size: 2.8rem; }
+    h2 { font-size: 1.4rem; }
+    .container { padding-left: 1.2rem; padding-right: 1.2rem; }
+}
+
+@media (max-width: 480px) {
+    .book-cover {
+        max-width: 60%;
+    }
 }
