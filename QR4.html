@@ -10,13 +10,16 @@
     <div class="container">
         
         <div class="texttitle">
-            <h3>Titre du Livre</h3>
+            <h3>Châteaux Bordeaux</h3>
         </div>
 
-        <img src="chad.jpg" alt="Couverture du livre" class="book-cover">
+        <img src="media/QR4.jpg" alt="Couverture du livre" class="book-cover" data-zoom="true">
 
-        <div class="extract">
-            <p>“Ceci est un court extrait du livre correspondant à ce lieu. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...”</p>
+        <div class="image-modal" id="imageModal">
+            <div class="image-modal-content">
+                <span class="image-modal-close">&times;</span>
+                <img id="modalImage" src="" alt="Image agrandie">
+            </div>
         </div>
 
         <div class="texttitle">
@@ -27,14 +30,11 @@
         </div>
 
         <div class="texttitle">
-            <h3>Audio</h3>
+            <h3>Résumé du Livre</h3>
         </div>
-        <div class="audio">
-            <audio controls>
-                <source src="audiofile.mp3" type="audio/mpeg">
-                Votre navigateur ne supporte pas l'élément audio.
-            </audio>
-        </div>
+        <p>Test</p>
+
+        
 
         <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.3); margin: 3rem 0;">
 
@@ -54,7 +54,7 @@
 
                 <div id="clue-result" style="display: none;">
                     <p>Bravo ! Voici le numéro de rue pour la prochaine étape :</p>
-                    <div class="clue-number">13</div>
+                    <div class="clue-number">38</div>
                 </div>
             </div>
         </div>
@@ -68,6 +68,35 @@
     </div>
 
     <script>
+        // Image Zoom Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            var zoomImages = document.querySelectorAll('[data-zoom="true"]');
+            var modal = document.getElementById('imageModal');
+            var modalImg = document.getElementById('modalImage');
+            var closeBtn = document.querySelector('.image-modal-close');
+
+            zoomImages.forEach(function(img) {
+                img.addEventListener('click', function() {
+                    modal.classList.add('active');
+                    modalImg.src = this.src;
+                });
+            });
+
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function() {
+                    modal.classList.remove('active');
+                });
+            }
+
+            if (modal) {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === modal) {
+                        modal.classList.remove('active');
+                    }
+                });
+            }
+        });
+
         document.getElementById('location-upload').addEventListener('change', function() {
             if (this.files && this.files[0]) {
                 // Feedback visuel sur le bouton

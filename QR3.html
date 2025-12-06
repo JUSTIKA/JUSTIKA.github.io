@@ -9,21 +9,32 @@
 <body>
     <div class="container">
         <div class="texttitle">
-            <h3>Titre de Livre</h3>
+            <h3>Marie-Laure Hubert Nasser </h3>
         </div>
 
-        <img src="chad.jpg" alt="Couverture du livre" class="book-cover">
-
-        <div class="extract">
-            <p>“Ceci est un court extrait du livre. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.”</p>
-        </div>
+        <img src="media/QR3.jpg" alt="Couverture du livre" class="book-cover">
 
         <div class="texttitle">
             <h3>À propos de l'auteur</h3>
         </div>
         <div class="author-info">
-            <p>Voici un court paragraphe sur l'auteur. Il explique qui il est et son lien avec Bordeaux. Quasi odio adipisci totam iste voluptatem.</p>
+            <p>Marie-Laure Hubert Nasser est née en 1963 à Clermont-Ferrand. Après une année d’hypokhâgne, elle suit la formation Celsa Sorbonne Université (Centre d’études littéraires et scientifiques appliquées). Son désir d’écrire est mis de côté car elle doit travailler. Passionnée par la communication publique, la recherche de sens, le lien avec les autres, la volonté d’être utile, elle mène sa carrière dans les collectivités territoriales et s’investit dans la presse locale. Très engagée pour la défense des droits des femmes, elle se révèle dans un rôle de « passeur » recueillant les témoignages des femmes engagées et organisant des évènements au féminin.<br>
+
+
+L’écriture est sa passion, un chemin révélé en 2013 par "La Carapace de la tortue", son premier roman qui a connu un large succès en édition folio (Prix Saint Estèphe du Château Pomys 2015, Prix du roman régional du Lions Club International 2015) ; suivi de "Spleen Machine" en 2015 (Prix Lire en Tursan 2015), de "Semblant sortir du noir" en 2017 et de "On rêve, on vit, on aime" en 2021. Marie-Laure Hubert Nasser - Babelio
+</p>
         </div>
+        <div class="texttitle">
+            <h3>Résumé du Livre</h3>
+        </div>
+        <p>"Oui, … je suis venue sur terre comme une tortue, encombrée d’une carapace. Qui rentre la tête quand le monde extérieur est trop douloureux. J’ai essayé de leur faire comprendre qu’ils n’y pouvaient rien. Que j’étais maladroite et disgracieuse malgré eux. Malgré moi. […] Étonnant d’imaginer que les personnes disgracieuses n’ont pas conscience de leur laideur. Je l’ai toujours su, évidemment. Même si j’ai préféré considérer cela avec indulgence. Comment survivre sinon ?". Lorsque Clotilde décide de venir s’installer à Bordeaux, sa ville natale, elle ne sait pas encore que sa vie va en être bouleversée : d’abord la découverte de voisines drôles et fantaisistes, puis l’amour d’un enfant et qui sait, celui d’un homme ? La recherche d’un travail va la conduire par le plus heureux des hasards à pénétrer un cercle bien fermé, celui de l’art contemporain. C’est dans un musée en quête de création et d’esthétisme que Clotilde va s’épanouir. Un hymne à l’amitié, à la culture et à la différence ! Une écriture décomplexée et vive qui fait exploser les idées préconçues sur l’apparence physique ! La carapace de la tortue - Marie-Laure Hubert Nasser - Babelio</p>
+        <div class="texttitle">
+            <h3>Extrait du Livre</h3>
+        </div>
+        <div class="extract collapsed">
+            <p>Elle avança vers les fenêtres spacieuses qui offraient une vue imprenable sur l'Entrepôt Lainé. Le musée d'art contemporain. Grandes portes bleu sombre sur murs plombés. Un néon blanc clignotait au coin du bâtiment. Une lettre éteinte l'empêchait de déchiffrer le texte qu'elle imaginait poétique. Artistique. Elle revenait à Bordeaux. Elle avait quitté cette banlieue parisienne où s'effaçait sa vie. Prière exaucée. Retour à la case province. Parfum d'enfance. Bâtisses blondes bombant le torse, fleuve gris glacé coulant entre les veines d'une cité où le temps semblait suspendu. Elle était enfin rentrée. Sa ville l'avait rappelée. Rassurante et lascive. Comme pour la sauver. </p>
+        </div>
+    <button class="extract-toggle" type="button" data-toggle="extract">Afficher plus</button>
 
         <div class="texttitle">
             <h3>Audio</h3>
@@ -41,5 +52,18 @@
             <a href="index.html">Retour à l'accueil</a>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var extract = document.querySelector('.extract');
+            var toggleBtn = document.querySelector('[data-toggle="extract"]');
+            if (!extract || !toggleBtn) return;
+
+            toggleBtn.addEventListener('click', function() {
+                var isCollapsed = extract.classList.toggle('collapsed');
+                toggleBtn.textContent = isCollapsed ? 'Afficher plus' : 'Afficher moins';
+            });
+        });
+    </script>
 </body>
 </html>

@@ -9,21 +9,33 @@
 <body>
     <div class="container">
         <div class="texttitle">
-            <h3>Titre de Livre</h3>
+            <h3>Stéphanie Lambert Mesguich</h3>
         </div>
 
-        <img src="chad.jpg" alt="Couverture du livre" class="book-cover">
-
-        <div class="extract">
-            <p>“Ceci est un court extrait du livre. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.”</p>
-        </div>
+        <img src="media/QR5.jpg" alt="Couverture du livre" class="book-cover">
 
         <div class="texttitle">
             <h3>À propos de l'auteur</h3>
         </div>
         <div class="author-info">
-            <p>Voici un court paragraphe sur l'auteur. Il explique qui il est et son lien avec Bordeaux. Quasi odio adipisci totam iste voluptatem.</p>
+            <p>Issue d'une formation en école de commerce, Stéphanie Lambert-Mesguich est chef d'entreprise et formatrice consultante en stratégie marketing. Auvergnate d'origine, aujourd'hui installée à Bordeaux, elle a vécu dans plusieurs régions françaises, en particulier la Normandie, le sud-ouest et la Corse. Depuis son plus jeune âge, son imagination est portée par la quête du Beau dans les choses ordinaires. C'est ainsi que l'écriture et la photographie ont trouvé une belle place dans sa vie. Son parcours, ses rencontres, ces lieux constitueront une de ses sources d'inspiration. Au travers des arts visuels et de l’écriture, Stéphanie Lambert-Mesguich a toujours cherché à dépeindre sa vision du monde qui l’entoure en s’appuyant sur son vécu et son sens de l’observation. Stéphanie Lambert-Mesguich - Babelio
+Son premier livre, "Je leur dirai que j'ai rêvé", aborde avec sensibilité le devenir d'une jeune fille qui subit un harcèlement scolaire durant de longues années. Il est à l'origine du spectacle "Marilou & Cie, Stop au harcèlement", qui a réuni à ce jour plusieurs milliers de spectateurs. Son second roman, "Les petits signes extérieurs du bonheur", dépeint lui aussi un parcours de femme qui se trouve face à son destin dans une société où les apparences, le regard des autres, nous font parfois oublier qui on est vraiment. Stéphanie Lambert-Mesguich - Livres, Biographie, Extraits et Photos | Booknode
+</p>
         </div>
+        <div class="texttitle">
+            <h3>Résumé du Livre</h3>
+        </div>
+        <p>Catherine, mère au foyer, vit avec son fils et son mari dans une maison cossue de Bordeaux. Aux yeux de tous, elle a tout pour être heureuse. Un jour, elle croit reconnaître dans un reportage télévisé l’homme qu’elle a aimé passionnément quand elle était étudiante, décédé dans un accident d’avion au cours d’une mission humanitaire. Déstabilisée, elle va entreprendre des recherches pour comprendre. Dès lors, sa vie bâtie sur une sécurité matérielle, sur beaucoup de faux semblants et même de lourds secrets, peut à tout moment basculer.
+Avec subtilité, le deuxième roman de Stéphanie Lambert-Mesguich nous emporte dans une satire sociale qui pointe du doigt notre monde consumériste axé sur les apparences, où l’avoir et le paraître l’emportent souvent au détriment de l’être. Derrière une apparente légèreté, l’auteure nous interroge aussi sur les conséquences écologiques d’un modèle sociétal qui pourrait bien nous induire en erreur sur les véritables origines du bonheur. Stéphanie Lambert-Mesguich auteure</p>
+        <div class="texttitle">
+            <h3>Extrait du Livre</h3>
+        </div>
+        <div class="extract collapsed">
+            <p>“La grille de la rue du Bocage marquait la fin de la minéralité pour céder la place aux chênes, aux platanes, ou encore aux séquoias qui avaient traversé bien plus de décennies que tout le joli monde qui l’entourait. Pour elle, cela ne faisait aucun doute : le parc Bordelais était à ses yeux le plus beau qu’elle connaissait.
+En cette fin de journée printanière, les giboulées avaient dissuadé les promeneurs. De fortes averses précédaient les éclaircies avant de revenir de plus belle. Seuls de courageux cyclistes couverts de ponchos et quelques propriétaires de chiens arpentaient les allées.
+La dame aux chats longea le plan d’eau, dépassa la passerelle et posa son cabas. Aussitôt, les oies, les canards, les pigeons se précipitèrent à sa rencontre. Après avoir accompli sa mission, elle passa de nouveau devant les grilles, dans l’autre sens, quitta le monde végétal pour retrouver son autre monde, celui du minéral, des façades en pierre, des voitures, des scooters, des bus, de la ville.”</p>
+        </div>
+    <button class="extract-toggle" type="button" data-toggle="extract">Afficher plus</button>
 
         <div class="texttitle">
             <h3>Audio</h3>
@@ -41,5 +53,18 @@
             <a href="index.html">Retour à l'accueil</a>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var extract = document.querySelector('.extract');
+            var toggleBtn = document.querySelector('[data-toggle="extract"]');
+            if (!extract || !toggleBtn) return;
+
+            toggleBtn.addEventListener('click', function() {
+                var isCollapsed = extract.classList.toggle('collapsed');
+                toggleBtn.textContent = isCollapsed ? 'Afficher plus' : 'Afficher moins';
+            });
+        });
+    </script>
 </body>
 </html>

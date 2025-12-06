@@ -9,21 +9,28 @@
 <body>
     <div class="container">
         <div class="texttitle">
-            <h3>Titre de Livre</h3>
+            <h3>Joan Ganhaire</h3>
         </div>
 
-        <img src="chad.jpg" alt="Couverture du livre" class="book-cover">
-
-        <div class="extract">
-            <p>“Ceci est un court extrait du livre. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.”</p>
-        </div>
+        <img src="media/QR6.jpg" alt="Couverture du livre" class="book-cover">
 
         <div class="texttitle">
             <h3>À propos de l'auteur</h3>
         </div>
         <div class="author-info">
-            <p>Voici un court paragraphe sur l'auteur. Il explique qui il est et son lien avec Bordeaux. Quasi odio adipisci totam iste voluptatem.</p>
+            <p>Joan Ganhaire est né le 21 mai 1941 à Agen, dans le Lot-et-Garonne. Écrivain occitan, il est formé en médecine à Bordeaux, où il prend conscience de son identité occitane, influencé par ses rencontres avec des locuteurs de langues régionales.
+En 1968, il s’installe comme médecin de campagne en Dordogne, où il redécouvre la langue occitane grâce à ses patients. Son engagement dans la littérature commence alors, inspiré à la fois par sa pratique médicale et sa passion pour le genre policier. Son personnage récurrent, le commissaire Darnaudguilhem, évolue dans des enquêtes teintées d’authenticité régionale, comme dans Vautres que m'avetz tuada et Un tant doç fogier et son dernier roman policier "Enquestas a la lesta"
+Sa défense de la culture occitane va bien au-delà de la littérature : il anime plusieurs ateliers de langue occitane, a été conseiller départemental en charge de la culture occitane, et fait partie des membres fondateurs de Novelum l’Institut d’Estudis Occitans en Périgord. 
+
+</p>
         </div>
+        <div class="texttitle">
+            <h3>Résumé du Livre</h3>
+        </div>
+        <p>Après avoir achevé une série de onze romans policiers, Joan Ganhaire entame une nouvelle phase de sa carrière littéraire avec son dernier ouvrage, un roman de fiction en occitan intitulé Lo patient espanhou. 
+Ce roman nous transporte dans le Bordeaux du début du XIXe siècle, en suivant la fin de vie du peintre espagnol Francisco Goya. Au cœur de cette intrigue, Joan Ganhaire explore un mystère historique fascinant : pourquoi, à la fin du XIXe siècle, lorsque l’Espagne voulut rapatrier le corps de Goya, découvre-t-on que la tête du célèbre peintre manque ?
+Joan Ganhaire, à la fois médecin et admirateur de Goya, a consacré plus d'un an de travail et de recherche pour reconstituer ce contexte historique. Il s'est plongé dans la médecine du XIXe siècle et dans la vie bordelaise de l’époque, car Goya y a passé ses dernières années. Ce roman puise dans des faits réels, inspirés de l’histoire vraie du rapatriement voulu par le roi d’Espagne.
+Dans Lo pacient espanhòu, Joan Ganhaire mêle habilement imaginaire et réalité pour nous faire voyager à travers deux siècles de mystères, nous plongeant dans l'œuvre, la vie et la mort de Goya, ainsi que dans la malédiction entourant ses créations les plus sombres.</p>
 
         <div class="texttitle">
             <h3>Audio</h3>
@@ -41,5 +48,18 @@
             <a href="index.html">Retour à l'accueil</a>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var extract = document.querySelector('.extract');
+            var toggleBtn = document.querySelector('[data-toggle="extract"]');
+            if (!extract || !toggleBtn) return;
+
+            toggleBtn.addEventListener('click', function() {
+                var isCollapsed = extract.classList.toggle('collapsed');
+                toggleBtn.textContent = isCollapsed ? 'Afficher plus' : 'Afficher moins';
+            });
+        });
+    </script>
 </body>
 </html>
