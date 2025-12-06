@@ -9,21 +9,32 @@
 <body>
     <div class="container">
         <div class="texttitle">
-            <h3>Titre de Livre</h3>
+            <h3>Hervé Le Corre</h3>
         </div>
 
-        <img src="chad.jpg" alt="Couverture du livre" class="book-cover">
-
-        <div class="extract">
-            <p>“Ceci est un court extrait du livre. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.”</p>
-        </div>
+        <img src="media/QR1.jpg" alt="Couverture du livre" class="book-cover">
 
         <div class="texttitle">
             <h3>À propos de l'auteur</h3>
         </div>
         <div class="author-info">
-            <p>Voici un court paragraphe sur l'auteur. Il explique qui il est et son lien avec Bordeaux. Quasi odio adipisci totam iste voluptatem.</p>
+            <p>Professeur de lettres dans un collège de Bègles, il est un lecteur passionné entre autres de littérature policière. Il commence à écrire sur le tard à l'âge de 30 ans des romans noirs et connaît un succès immédiat.
+Son écriture, le choix de ses personnages, l'atmosphère assez sombre de ses livres le placent d'entrée parmi les auteurs français les plus noirs et les plus primés du roman policier hexagonal. Ses romans ont été primés à de nombreuses reprises. Hervé Le Corre — Wikipédia
+</p>
         </div>
+        <div class="texttitle">
+            <h3>Résumé du Livre</h3>
+        </div>
+        <p>Bordeaux dans les années 50. La Seconde Guerre mondiale est encore dans toutes les mémoires et pourtant, un nouveau conflit qui ne dit pas son nom a déjà commencé : de jeunes appelés partent pour l’Algérie. Daniel sait ce qui l’attend. Cet orphelin qui a perdu ses parents dans les camps, travaille comme mécanicien ; il voit un jour arriver au garage un inconnu qui laisse sa moto et repart telle une ombre. Cet homme n’est pas venu par hasard. C’est dans ce contexte qu’une série d’événements violents se produisent.<br>
+Dans ce roman à plusieurs voix, magistralement construit, il fait alterner le champ de bataille urbain de Bordeaux et celui de l’Algérie vu à travers le regard de Daniel. Il confirme l’ampleur de son propos et la variété de son style, passant du langage des bas-fonds à une élégance flaubertienne noire et cruelle pour emprunter des accents lyriques et poignants quand le récit se transporte sur le front algérien. Par la profondeur des questions que le romancier aborde — valeur de la vie humaine, légitimité de la vengeance, jouissance de la violence — il justifie pleinement le jugement de Manchette qui parlait du roman noir comme d’une grande littérature morale.</p>
+        <div class="texttitle">
+            <h3>Extrait du Livre</h3>
+        </div>
+        <div class="extract collapsed">
+            <p>Il fonce, le nez dans le guidon, les yeux mouillés de larmes à cause du froid, comme ça jusqu'à la gare.
+Les trottoirs sont pleins de gens encombrés de bagages, soulevant de lourdes valises qui leur tapent dans les jambes, déhanchés, les genoux ployés, les bras tendus par de gros sacs qu'ils s'efforcent de ne pas laisser traîner par terre. Ou bien ils portent contre eux un enfant emmitouflé en paquet sombre et pesant qu'il faut remonter toujours d'un coup d'épaule ou de hanche pour l'empêcher de glisser. Ils traversent la rue et se hâtent vers le hall des départs, et râlent parfois après l'un qui traîne ou l'autre qui marche trop vite. C'est un peuple de silhouettes bancales qui clopine ou chancelle, des ombres vacillantes parfois qu'on s'attend à voir gobées par la grande gueule de leurs valises ouvertes soudain, serrures claquées. Une cour des miracles, surgie du pâle matin bleuâtre, qui traînerait la patte à l'assaut d'une cathédrale profane. On dirait que quelques-uns vont prendre le dernier train possible tant est pathétique leur course titubante. </p>
+        </div>
+    <button class="extract-toggle" type="button" data-toggle="extract">Afficher plus</button>
 
         <div class="texttitle">
             <h3>Audio</h3>
@@ -41,5 +52,18 @@
             <a href="index.html">Retour à l'accueil</a>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var extract = document.querySelector('.extract');
+            var toggleBtn = document.querySelector('[data-toggle="extract"]');
+            if (!extract || !toggleBtn) return;
+
+            toggleBtn.addEventListener('click', function() {
+                var isCollapsed = extract.classList.toggle('collapsed');
+                toggleBtn.textContent = isCollapsed ? 'Afficher plus' : 'Afficher moins';
+            });
+        });
+    </script>
 </body>
 </html>

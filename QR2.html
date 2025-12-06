@@ -9,30 +9,63 @@
 <body>
     <div class="container">
         <div class="texttitle">
-            <h3>Titre de Livre</h3>
+            <h3>Virginie Grimaldi</h3>
         </div>
 
-        <img src="chad.jpg" alt="Couverture du livre" class="book-cover">
-
-        <div class="extract">
-            <p>“Ceci est un court extrait du livre. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.”</p>
-        </div>
+        <img src="media/QR2.png" alt="Couverture du livre" class="book-cover">
 
         <div class="texttitle">
             <h3>À propos de l'auteur</h3>
         </div>
         <div class="author-info">
-            <p>Voici un court paragraphe sur l'auteur. Il explique qui il est et son lien avec Bordeaux. Quasi odio adipisci totam iste voluptatem.</p>
+            <p>Virginie Grimaldi est originaire de la banlieue bordelaise et plus particulièrement de Gradignan, lieu qu’elle n’a jamais quitté et dont elle est très attachée. Loin de l’agitation parisienne, elle puise son inspiration dans sa vie quotidienne et en observant la vie autour d’elle, et écrit ainsi des histoires ancrées, humaines et reconnaissables. Outre le fait d’être un lieu Gradignan est donc pour elle une véritable base d’écriture et lui permet de rester fidèle à qui elle est. 
+Dès l’âge de 8 ans elle commence à écrire et c’est en 2009 qu’elle crée son blog Femme Sweet Femme qui lui fera gagner en popularité et la lance dans l’écriture de son premier roman Le premier jour du reste de ma vie qui sera publié en 2015 et deviendra rapidement un best seller. Depuis elle a publié de nombreux romans tels que Il est grand temps de rallumer les étoiles ou Une belle vie qui connaissent tous un franc succès.</p>
         </div>
+        <div class="texttitle">
+            <h3>Résumé du Livre</h3>
+        </div>
+        <p>« Je veux qu’on divorce. »
+ Il aura suffi de cinq mots pour que l’univers de Pauline bascule. Installée avec son fils de quatre ans chez ses parents, elle laisse les jours s’écouler en attendant que la douleur s’estompe. Jusqu’au moment où elle décide de reprendre sa vie en main.
+ Si les sentiments de Ben se sont évanouis, il suffit de les ranimer. Chaque jour, elle va donc lui écrire un souvenir de leur histoire. Mais cette plongée dans le passé peut faire resurgir les secrets les plus enfouis.
+
+En 2025 ce roman a été adapté à l’écran avec la mini série télévisée de 4 épisodes Le parfum du bonheur par Samantha Mazeras et produite par Ripley Films et Merlin Productions/Mediawan, avec le soutient de France Télévisions et avec casting de comédiens confirmés comme Caroline Anglade, Michele Bernier et Michel Boujenah. Tournée à Bordeaux et sur le bassin d’Arcachon cette adaptation fait redécouvrir la ville de bordeaux et ancre l’histoire dans des décors authentiques.</p>
+        <div class="texttitle">
+            <h3>Extrait du Livre</h3>
+        </div>
+        <div class="extract collapsed">
+            <p>22 h 30<br>
+
+Le restaurant va bientôt fermer, mais je ne perds pas espoir. Il ne peut pas ne pas venir. Je veux bien croire qu'il a autre chose en tête ces derniers temps, mais rien ne justifie son absence ce soir. Il a intérêt à avoir une bonne excuse et à me la livrer depuis un lit d'hôpital.<br>
+Il est forcément en chemin, il va passer la porte d'une minute à l'autre. Il ne me ferait pas ça. Il ne nous ferait pas ça. Me poser un lapin le soir de notre anniversaire de mariage serait un<br>
+message trop irrévocable. Il va arriver. Il lui reste trente minutes.<br>
+Vingt.<br>
+Quinze.<br>
+Dix.<br>
+Huit minutes. <br>
+
+
+22 h 52<br>
+
+La porte s'ouvre, le serveur me lance un sourire. Je le savais.<br>
+Ce pantalon gris. Cette chemise blanche. Ces chaussures noires. Je reconnais immédiatement la silhouette qui s'avance vers moi. Ce n'est pas Ben.<br>
+J'étais sûr que je te trouverais là. Viens, on rentre.<br>
+Je secoue la tête. Il reste huit minutes, il peut encore me rejoindre.<br>
+Allez viens, Pauline, Maman s'inquiète.<br>
+Attends, Papa, il va arriver. J'en suis sûre.<br>
+Mon père tire une chaise et s'assoit face à moi. Il pose sa main sur mon épaule et la serre, comme pour me ramener dans le monde réel.<br>
+Tu sais qu'il ne viendra pas, ma chérie. Tu te fais du mal à espérer... Ça fait trois mois qu'il t'a quittée. Allez, viens, on rentre à la maison.</p>
+        </div>
+    <button class="extract-toggle" type="button" data-toggle="extract">Afficher plus</button>
 
         <div class="texttitle">
-            <h3>Audio</h3>
+            <h3>Vidéo</h3>
         </div>
         <div class="audio">
-            <audio controls>
-                <source src="audiofile.mp3" type="audio/mpeg">
-                Votre navigateur ne supporte pas l'élément audio.
-            </audio>
+            <video controls width="100%">
+                <source src="media/QR2vid.mov" type="video/quicktime">
+                Votre navigateur ne supporte pas l'élément vidéo. Essayez de télécharger le fichier directement :
+                <a href="media/QR2vid.mov">Télécharger la vidéo</a>.
+            </video>
         </div>
     </div>
 
@@ -41,5 +74,18 @@
             <a href="index.html">Retour à l'accueil</a>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var extract = document.querySelector('.extract');
+            var toggleBtn = document.querySelector('[data-toggle="extract"]');
+            if (!extract || !toggleBtn) return;
+
+            toggleBtn.addEventListener('click', function() {
+                var isCollapsed = extract.classList.toggle('collapsed');
+                toggleBtn.textContent = isCollapsed ? 'Afficher plus' : 'Afficher moins';
+            });
+        });
+    </script>
 </body>
 </html>
