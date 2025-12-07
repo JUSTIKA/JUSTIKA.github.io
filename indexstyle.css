@@ -392,7 +392,9 @@ audio {
     transform: translateY(-2px);
 }
 
+/* Correction de l'affichage des boutons de jeu */
 .game-upload-btn {
+    display: block; /* INDISPENSABLE : Force le bouton à prendre sa propre ligne */
     background: #4a6fa5; 
     color: white;
     width: 100%;
@@ -401,8 +403,18 @@ audio {
     text-align: center;
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
-    margin-top: 1rem;
+    
+    /* Espacement propre */
+    margin-top: 1rem; 
+    margin-bottom: 0.5rem;
+    
     box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.game-upload-btn:active {
+    transform: scale(0.98);
 }
 
 .clue-number {

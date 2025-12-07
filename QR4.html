@@ -35,8 +35,6 @@
         <p>Tome 7 - Les Vendanges<br>
 Septembre 2008. Alors que Jeanne est toujours dans le coma à la suite de son accident, Alexandra doit faire face à une nouvelle crise. Les vendangeurs qu’elle emploie se plaignent de leurs conditions de travail et ont décidé de faire grève. Problème : elle a besoin que les vendanges se terminent le plus vite possible pour que le raisin ne souffre pas trop du mauvais temps qui perdure. Et puisqu’un malheur n’arrive jamais seul, Alexandra apprend par Nicolas Noiret, le jeune courtier qui lui fait de l’œil, que le vin qu’elle expérimente sur l’île de son père risque bien de ne pas obtenir l’AOC...</p>
 
-        
-
         <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.3); margin: 3rem 0;">
 
         <div class="game-section">
@@ -44,19 +42,25 @@ Septembre 2008. Alors que Jeanne est toujours dans le coma à la suite de son ac
                 <h3>Le Défi du Lieu</h3>
             </div>
 
-            <p>Vous avez découvert l'histoire ? Maintenant, prouvez que vous y êtes ! Chargez une photo du lieu pour révéler l'indice final.</p>
+            <p>Vous avez découvert l'histoire ? Maintenant, prouvez que vous y êtes ! Chargez ou prenez une photo qui reproduit une des cases de la planche plus haut.</p>
 
             <div class="game-area" style="margin-bottom: 2rem;">
-                <input type="file" id="location-upload" accept="image/*" style="display: none;">
                 
-                <label for="location-upload" class="game-upload-btn">
-                    📷 Prendre ou choisir une photo
+                <input type="file" id="camera-upload" accept="image/*" capture="environment" style="display: none;">
+                <label for="camera-upload" class="game-upload-btn" id="btn-camera">
+                    📷 Prendre une photo
+                </label>
+
+                <input type="file" id="gallery-upload" accept="image/*" style="display: none;">
+                <label for="gallery-upload" class="game-upload-btn" id="btn-gallery" style="margin-top: 15px; background-color: #e6d0b3; color: #800020;">
+                    🖼️ Choisir dans la galerie
                 </label>
 
                 <div id="clue-result" style="display: none;">
-                    <p>Bravo ! Voici le numéro de rue pour la prochaine étape :</p>
+                    <p style="margin-top: 1.5rem;"><strong>Preuve validée !</strong><br>Voici le numéro de rue pour la prochaine étape :</p>
                     <div class="clue-number">38</div>
                 </div>
+
             </div>
         </div>
 
@@ -68,54 +72,84 @@ Septembre 2008. Alors que Jeanne est toujours dans le coma à la suite de son ac
         </div>
     </div>
 
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
+    <div class="nav-overlay" id="navOverlay">
+        <ul class="nav-links">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="QR1.html">1. Hervé Le Corre</a></li>
+            <li><a href="QR2.html">2. Virginie Grimaldi</a></li>
+            <li><a href="QR3.html">3. M-L. Hubert Nasser</a></li>
+            <li><a href="QR4.html">4. Le Défi Photo</a></li>
+            <li><a href="QR5.html">5. S. Lambert Mesguich</a></li>
+            <li><a href="QR6.html">6. Joan Ganhaire</a></li>
+            <li><a href="QR7.html">7. Châteaux Bordeaux</a></li>
+        </ul>
+    </div>
+
     <script>
-        // Image Zoom Functionality
+        // 1. Gestion du Zoom Image
         document.addEventListener('DOMContentLoaded', function() {
             var zoomImages = document.querySelectorAll('[data-zoom="true"]');
             var modal = document.getElementById('imageModal');
             var modalImg = document.getElementById('modalImage');
             var closeBtn = document.querySelector('.image-modal-close');
 
-            zoomImages.forEach(function(img) {
-                img.addEventListener('click', function() {
-                    modal.classList.add('active');
-                    modalImg.src = this.src;
+            if(zoomImages.length > 0) {
+                zoomImages.forEach(function(img) {
+                    img.addEventListener('click', function() {
+                        modal.classList.add('active');
+                        modalImg.src = this.src;
+                    });
+                });
+                if (closeBtn) {
+                    closeBtn.addEventListener('click', function() { modal.classList.remove('active'); });
+                }
+                if (modal) {
+                    modal.addEventListener('click', function(e) { if (e.target === modal) modal.classList.remove('active'); });
+                }
+            }
+        });
+
+        // 2. Gestion du Menu Burger
+        const navToggle = document.getElementById('navToggle');
+        const navOverlay = document.getElementById('navOverlay');
+        if (navToggle && navOverlay) {
+            navToggle.addEventListener('click', () => {
+                navOverlay.classList.toggle('active');
+                navToggle.innerHTML = navOverlay.classList.contains('active') ? '✕' : '☰';
+            });
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navOverlay.classList.remove('active');
+                    navToggle.innerHTML = '☰';
                 });
             });
+        }
 
-            if (closeBtn) {
-                closeBtn.addEventListener('click', function() {
-                    modal.classList.remove('active');
-                });
-            }
-
-            if (modal) {
-                modal.addEventListener('click', function(e) {
-                    if (e.target === modal) {
-                        modal.classList.remove('active');
-                    }
-                });
-            }
-        });
-
-        document.getElementById('location-upload').addEventListener('change', function() {
+        // 3. Gestion du Jeu (Double Bouton)
+        function handleImageUpload(event) {
             if (this.files && this.files[0]) {
-                // Feedback visuel sur le bouton
-                const btn = document.querySelector('.game-upload-btn');
-                btn.innerHTML = "✅ Photo validée";
-                btn.style.backgroundColor = "#4CAF50"; 
-                btn.style.color = "white";
-                btn.style.boxShadow = "none";
+                // On cache les deux boutons
+                document.getElementById('btn-camera').style.display = 'none';
+                document.getElementById('btn-gallery').style.display = 'none';
 
                 // Affichage de l'indice
-                document.getElementById('clue-result').style.display = 'block';
+                const resultDiv = document.getElementById('clue-result');
+                resultDiv.style.display = 'block';
                 
-                // Petit scroll automatique vers l'indice pour être sûr qu'il soit vu
+                // Scroll vers le résultat
                 setTimeout(() => {
-                    document.getElementById('clue-result').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    resultDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 }, 300);
             }
-        });
+        }
+
+        // On écoute les deux inputs
+        const cameraInput = document.getElementById('camera-upload');
+        const galleryInput = document.getElementById('gallery-upload');
+        
+        if(cameraInput) cameraInput.addEventListener('change', handleImageUpload);
+        if(galleryInput) galleryInput.addEventListener('change', handleImageUpload);
     </script>
 </body>
 </html>
