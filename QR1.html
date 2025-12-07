@@ -35,16 +35,23 @@ Dans ce roman à plusieurs voix, magistralement construit, il fait alterner le c
 Les trottoirs sont pleins de gens encombrés de bagages, soulevant de lourdes valises qui leur tapent dans les jambes, déhanchés, les genoux ployés, les bras tendus par de gros sacs qu'ils s'efforcent de ne pas laisser traîner par terre. Ou bien ils portent contre eux un enfant emmitouflé en paquet sombre et pesant qu'il faut remonter toujours d'un coup d'épaule ou de hanche pour l'empêcher de glisser. Ils traversent la rue et se hâtent vers le hall des départs, et râlent parfois après l'un qui traîne ou l'autre qui marche trop vite. C'est un peuple de silhouettes bancales qui clopine ou chancelle, des ombres vacillantes parfois qu'on s'attend à voir gobées par la grande gueule de leurs valises ouvertes soudain, serrures claquées. Une cour des miracles, surgie du pâle matin bleuâtre, qui traînerait la patte à l'assaut d'une cathédrale profane. On dirait que quelques-uns vont prendre le dernier train possible tant est pathétique leur course titubante. </p>
         </div>
     <button class="extract-toggle" type="button" data-toggle="extract">Afficher plus</button>
-
         <div class="texttitle">
             <h3>Audio</h3>
         </div>
         <div class="audio">
-            <audio controls>
-                <source src="audiofile.mp3" type="audio/mpeg">
-                Votre navigateur ne supporte pas l'élément audio.
-            </audio>
+    <div class="custom-audio-player" id="customPlayer">
+        
+        <audio id="realAudio" src="media/LaGare.m4a" preload="metadata"></audio>
+
+        <button class="player-btn" id="playBtn">▶</button>
+
+        <div class="progress-container" id="progressContainer">
+            <div class="progress-bar" id="progressBar"></div>
         </div>
+
+        <span class="time-display" id="timeDisplay">0:00</span>
+    </div>
+</div>
     </div>
 
     <div class="button-container">
@@ -64,6 +71,51 @@ Les trottoirs sont pleins de gens encombrés de bagages, soulevant de lourdes va
                 toggleBtn.textContent = isCollapsed ? 'Afficher plus' : 'Afficher moins';
             });
         });
+
+        document.addEventListener('DOMContentLoaded', function() {
+        const audio = document.getElementById('realAudio');
+        const playBtn = document.getElementById('playBtn');
+        const progressBar = document.getElementById('progressBar');
+        const progressContainer = document.getElementById('progressContainer');
+        const timeDisplay = document.getElementById('timeDisplay');
+
+        // 1. Gérer Play / Pause
+        playBtn.addEventListener('click', function() {
+            if (audio.paused) {
+                audio.play();
+                playBtn.innerHTML = "❚❚"; // Symbole Pause
+            } else {
+                audio.pause();
+                playBtn.innerHTML = "▶"; // Symbole Play
+            }
+        });
+
+        // 2. Mettre à jour la barre et le temps pendant la lecture
+        audio.addEventListener('timeupdate', function() {
+            const percent = (audio.currentTime / audio.duration) * 100;
+            progressBar.style.width = percent + "%";
+
+            // Formatage du temps (minutes:secondes)
+            const minutes = Math.floor(audio.currentTime / 60);
+            const seconds = Math.floor(audio.currentTime % 60);
+            timeDisplay.textContent = minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+        });
+
+        // 3. Rendre la barre cliquable (pour avancer/reculer)
+        progressContainer.addEventListener('click', function(e) {
+            const width = this.clientWidth;
+            const clickX = e.offsetX;
+            const duration = audio.duration;
+            
+            audio.currentTime = (clickX / width) * duration;
+        });
+
+        // 4. Remettre à zéro quand c'est fini
+        audio.addEventListener('ended', function() {
+            playBtn.innerHTML = "▶";
+            progressBar.style.width = "0%";
+        });
+    });
     </script>
 </body>
 </html>

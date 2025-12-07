@@ -1,26 +1,30 @@
 /* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Montserrat:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@400;500;700&family=Pinyon+Script&display=swap');
 
-/* === CORRECTION MOBILE GLOBALE === */
-/* 1. Force tous les éléments à inclure les bordures/padding dans leur taille */
+/* === BASE & RESET === */
 * {
     box-sizing: border-box;
 }
 
-/* 2. Empêche Android de grossir le texte arbitrairement */
 html {
     -webkit-text-size-adjust: 100%; 
     text-size-adjust: 100%;
 }
 
 body {
-    font-family: 'Merriweather', serif;
-    /* Votre fond existant */
+    /* Fonts */
+    font-family: 'Crimson Text', serif;
+    
+    /* Background Color */
     background-color: #800020; 
-    background: radial-gradient(circle at center, #901030 0%, #500010 100%);
-    background-image: radial-gradient(#ffffff 1px, transparent 1px), radial-gradient(circle at center, #901030 0%, #500010 100%);
-    background-size: 40px 40px, 100% 100%;
-    background-blend-mode: overlay;
+    
+    /* Background Pattern: DOTS (Visible) + GRADIENT */
+    background-image: 
+        radial-gradient(rgba(255, 255, 255, 0.35) 1.5px, transparent 1.5px), 
+        radial-gradient(circle at center, #901030 0%, #500010 100%); 
+        
+    background-size: 40px 40px, 100% 100%; 
+    background-attachment: fixed;
     
     color: whitesmoke;
     margin: 0;
@@ -28,349 +32,415 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    
-    /* 3. Utilisation de 100dvh (Dynamic Viewport Height) pour gérer la barre d'adresse mobile */
     min-height: 100vh;
     min-height: 100dvh; 
-    
-    /* 4. Empêche le défilement horizontal qui "casse" le site */
     overflow-x: hidden;
     width: 100%;
 }
 
-/* Container */
+/* Animation */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 .container {
     width: 100%;
     max-width: 600px;
-    /* Marges intérieures : suffisant pour ne pas coller aux bords */
-    padding: 2rem 1.25rem 8rem 1.25rem; 
+    padding: 2.5rem 1.5rem 8rem 1.5rem; 
     margin: 0 auto;
     text-align: center;
+    animation: fadeInUp 0.8s ease-out; 
 }
 
-/* Headings */
+/* === INDEX PAGE CENTERING === */
+.home-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; 
+    min-height: 100dvh;
+    padding-bottom: 0;
+}
+
+/* === TYPOGRAPHY === */
 h1, h2, h3 {
     font-family: 'Montserrat', sans-serif;
-    margin: 0.5em 0;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
-    color: whitesmoke;
-    /* 5. Empêche les mots longs de déborder (ex: (Re)Découvrir) */
+    color: antiquewhite;
     word-wrap: break-word;
-    hyphens: auto;
 }
 
 h1 {
-    font-size: 3rem; /* Légèrement réduit pour passer sur les petits écrans */
+    font-size: 3rem;
     font-weight: 700;
     line-height: 1.1;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    margin-bottom: 0.5rem;
 }
 
 h2 {
-    font-size: 1.5rem;
-    font-weight: 500;
+    font-size: 1.4rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 2px;
     opacity: 0.9;
     margin-top: 0;
-}
-
-h3 {
-    font-size: 1.5rem;
-    text-align: left;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
+    border-top: 1px solid rgba(250, 235, 215, 0.3);
+    border-bottom: 1px solid rgba(250, 235, 215, 0.3);
+    padding: 10px 0;
     display: inline-block;
 }
 
-/* Textes */
+h3 {
+    font-size: 1.6rem;
+    text-align: left;
+    margin-top: 2.5rem;
+    margin-bottom: 1.2rem;
+    display: block; 
+    position: relative;
+    padding-bottom: 10px;
+    color: antiquewhite;
+}
+
+h3::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px; 
+    height: 3px;
+    background: linear-gradient(to right, antiquewhite, transparent);
+    border-radius: 2px;
+}
+
 p {
-    font-size: 1.1rem; /* Taille lisible standard */
+    font-size: 1.25rem; 
     line-height: 1.6;
-    font-weight: 300;
+    font-weight: 400;
     text-align: justify;
     margin-bottom: 1.5rem;
+    color: rgba(255, 255, 255, 0.95);
 }
 
-/* Images & Couvertures */
+/* === IMAGES & FRAMES === */
 .book-cover {
     display: block;
-    max-width: 60%; /* Un peu plus large sur mobile */
+    max-width: 55%; 
     height: auto;
-    margin: 1rem auto 2rem auto;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-    object-fit: cover;
+    margin: 1.5rem auto 2.5rem auto;
+    
+    border: 4px solid white;
+    outline: 1px solid rgba(0,0,0,0.2);
+    box-shadow: 
+        0 10px 20px rgba(0,0,0,0.3), 
+        0 0 0 1px rgba(255,255,255,0.1); 
+        
+    transition: transform 0.3s ease;
 }
 
-/* Sécuriser toutes les images pour qu'elles ne dépassent jamais */
+.book-cover:hover {
+    transform: scale(1.02);
+}
+
 img {
-    max-width: 100%; 
+    max-width: 100%;
     height: auto;
 }
 
-/* Extrait style Livre */
+/* === VIDEO STYLE (Cinema Frame) === */
+video {
+    border: 5px solid antiquewhite; 
+    border-radius: 6px; 
+    box-shadow: 
+        0 15px 35px rgba(0,0,0,0.5), 
+        0 0 0 1px rgba(0,0,0,0.2);
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 1.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+video:hover {
+    transform: scale(1.01); 
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+}
+
+/* === DECORATIVE EXTRACT === */
 .extract {
-    background-color: rgba(0, 0, 0, 0.25);
-    padding: 1.5rem; /* Réduit un peu le padding pour gagner de la place */
-    border-radius: 4px;
-    border-left: 4px solid antiquewhite;
-    border-right: 1px solid rgba(250, 235, 215, 0.3);
-    font-style: italic;
-    margin-bottom: 2rem;
+    background-color: rgba(0, 0, 0, 0.2); 
+    padding: 2rem;
+    margin-bottom: 2.5rem;
     text-align: left;
-    box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
     position: relative;
+    border: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.extract::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 30px; height: 30px;
+    border-top: 2px solid antiquewhite;
+    border-left: 2px solid antiquewhite;
+}
+
+.extract::after {
+    content: "";
+    position: absolute;
+    bottom: 0; right: 0;
+    width: 30px; height: 30px;
+    border-bottom: 2px solid antiquewhite;
+    border-right: 2px solid antiquewhite;
+}
+
+.extract p::first-letter {
+    font-family: 'Pinyon Script', cursive; 
+    font-size: 4rem;
+    float: left;
+    line-height: 0.6;
+    margin-right: 12px;
+    margin-top: 8px;
+    margin-left: -5px;
+    color: antiquewhite;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
 }
 
 .extract.collapsed {
-    max-height: 260px;
+    max-height: 280px;
     overflow: hidden;
 }
 
 .extract.collapsed::after {
     content: "";
+    z-index: 10; 
     position: absolute;
-    bottom: 0;
-    left: 0;
+    bottom: 0; left: 0; right: 0; 
     width: 100%;
-    height: 60px;
-    background: linear-gradient(to bottom, rgba(128, 0, 32, 0) 0%, rgba(128, 0, 32, 0.7) 100%);
+    height: 80px;
+    background: linear-gradient(to bottom, rgba(128,0,32,0), #600010);
+    border-bottom: none; border-right: none; 
+}
+
+/* === BUTTONS & NAVIGATION === */
+.extract-toggle {
+    background: transparent;
+    color: antiquewhite;
+    border: 1px solid antiquewhite;
+    border-radius: 30px;
+    padding: 10px 25px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+    margin: -1rem auto 2rem auto; 
+    display: block;
+    transition: all 0.3s ease;
+}
+
+.extract-toggle:hover {
+    background: antiquewhite;
+    color: #800020;
+}
+
+.button-container {
+    position: fixed;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    width: 90%;
+    max-width: 400px;
     pointer-events: none;
 }
 
-.extract p::first-letter {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 3rem;
-    float: left;
-    line-height: 0.8;
-    margin-right: 10px;
-    margin-top: 5px;
-    font-weight: 700;
-    color: antiquewhite;
-    text-shadow: 2px 2px 0px #000;
-}
-
-.author-info {
-    font-size: 1rem;
-    opacity: 0.95;
-}
-
-/* Audio */
-audio {
-    width: 100%;
-    margin-top: 1rem;
-    height: 40px;
-    border-radius: 20px;
-}
-
-/* Image Zoom Modal */
-.image-modal {
-    display: none;
-    position: fixed;
-    z-index: 2000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.95);
-    animation: fadeIn 0.3s ease-in-out;
-}
-
-.image-modal.active {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.image-modal-content {
-    position: relative;
-    max-width: 95%;
-    max-height: 95vh;
-    margin: 0 auto;
-}
-
-.image-modal-content img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-}
-
-.image-modal-close {
-    position: absolute;
-    top: -40px;
-    right: 0;
-    color: white;
-    font-size: 2.5rem;
-    font-weight: bold;
-    cursor: pointer;
-    user-select: none;
-    transition: transform 0.2s ease;
-}
-
-.image-modal-close:hover {
-    transform: scale(1.2);
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-.book-cover {
-    cursor: pointer;
-}
-
-.extract-toggle {
-    background-color: antiquewhite;
-    color: #800020;
-    border: none;
-    border-radius: 999px;
-    padding: 12px 20px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 1rem;
-    cursor: pointer;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.35);
-    margin: 0 auto 2rem auto;
-    display: block;
-    transition: transform 0.15s ease;
-}
-
-.extract-toggle:active {
-    transform: scale(0.97);
-}
-
-/* Séparateur */
-.separator-icon {
-    text-align: center;
-    margin: 2rem 0;
-    position: relative;
-    width: 100%; /* S'assure qu'il ne dépasse pas */
-}
-.separator-icon::before, .separator-icon::after {
-    content: "";
-    display: inline-block;
-    width: 25%; /* Réduit pour éviter les soucis de largeur */
-    height: 1px;
-    background: antiquewhite;
-    vertical-align: middle;
-    opacity: 0.5;
-}
-.separator-icon span {
-    color: antiquewhite;
-    padding: 0 10px;
-    font-size: 1.2rem;
-}
-
-/* Bouton Fixe (Nav) */
-.button-container {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1000; /* Z-index élevé pour passer au dessus de tout */
-    width: 90%; /* Largeur max pour éviter de sortir de l'écran */
-    display: flex;
-    justify-content: center;
-    pointer-events: none; /* Laisse passer les clics autour */
-}
-
 .button {
-    pointer-events: auto; /* Réactive les clics sur le bouton lui-même */
-    background-color: antiquewhite;
+    pointer-events: auto;
+    background: linear-gradient(135deg, antiquewhite 0%, #e6d0b3 100%);
     border: none;
     border-radius: 50px;
-    padding: 15px 30px; /* Padding un peu plus compact */
-    text-decoration: none;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-    transition: transform 0.2s ease;
+    padding: 16px 30px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
     display: flex;
     align-items: center;
     justify-content: center;
-    white-space: nowrap; /* Empêche le texte du bouton de passer à la ligne */
+    transition: transform 0.2s;
 }
 
-.button:active {
-    transform: scale(0.95);
-}
+.button:active { transform: scale(0.96); }
 
 .button a {
     text-decoration: none;
-    color: #800020;
+    color: #500010;
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 1.1rem; /* Texte lisible */
+    text-transform: uppercase;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
 }
 
-/* Éléments de jeu (Inputs, etc) */
-.game-upload-btn {
-    background-color: antiquewhite;
-    color: #800020;
-    padding: 15px 25px;
+/* === AUDIO PLAYERS === */
+/* Default Audio Fallback */
+audio {
+    width: 100%;
+    margin-top: 0.5rem;
+    height: 45px;
+    border-radius: 25px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Custom Audio Player Styles */
+.custom-audio-player {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(250, 235, 215, 0.2);
     border-radius: 50px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 1rem;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 1rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    width: 100%;
+}
+
+.player-btn {
+    background: antiquewhite;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
     cursor: pointer;
-    display: inline-block;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    margin: 1rem 0;
-    border: 2px solid transparent;
-    max-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #800020;
+    font-size: 1.2rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    transition: transform 0.1s;
+    flex-shrink: 0;
+}
+
+.player-btn:active {
+    transform: scale(0.95);
+}
+
+.progress-container {
+    flex-grow: 1; 
+    height: 6px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+}
+
+.progress-bar {
+    height: 100%;
+    background: antiquewhite;
+    border-radius: 5px;
+    width: 0%; 
+    transition: width 0.1s linear;
+    position: relative;
+}
+
+.progress-bar::after {
+    content: '';
+    position: absolute;
+    right: -5px;
+    top: -3px;
+    width: 12px;
+    height: 12px;
+    background: antiquewhite;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+.time-display {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem;
+    color: antiquewhite;
+    min-width: 40px;
+    text-align: right;
+    font-variant-numeric: tabular-nums; 
+}
+
+/* === GAME ELEMENTS === */
+.game-section {
+    background: rgba(0,0,0,0.15);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px dashed rgba(250, 235, 215, 0.3);
+    margin-top: 2rem;
 }
 
 .game-input {
-    width: 100%; /* Prend toute la largeur dispo dans le container */
-    max-width: 100%;
-    padding: 12px 15px;
+    width: 100%;
+    padding: 14px 18px;
     margin: 8px 0;
-    border: none;
-    border-radius: 25px;
-    background-color: rgba(255, 255, 255, 0.9);
-    font-family: 'Titillium Web', sans-serif;
-    font-size: 1rem;
+    border: 1px solid transparent;
+    border-radius: 8px; 
+    background-color: rgba(255, 255, 255, 0.95);
+    font-family: 'Montserrat', sans-serif;
     color: #333;
-    box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
+    font-size: 1rem;
+    transition: all 0.3s;
+}
+
+.game-input:focus {
+    outline: none;
+    border-color: antiquewhite;
+    box-shadow: 0 0 10px rgba(250, 235, 215, 0.3);
+    transform: translateY(-2px);
+}
+
+.game-upload-btn {
+    background: #4a6fa5; 
+    color: white;
+    width: 100%;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    margin-top: 1rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
 }
 
 .clue-number {
-    font-size: 4rem; /* Un peu moins géant pour éviter que ça sorte */
-    font-family: 'Montserrat', sans-serif;
+    font-size: 3.5rem;
     font-weight: 800;
     color: antiquewhite;
-    margin: 10px 0;
-    text-shadow: 4px 4px 0px #000;
-    word-break: break-all; /* Au cas où le numéro est très long */
+    text-shadow: 0 0 20px rgba(250, 235, 215, 0.4);
+    margin: 1rem 0;
+    animation: fadeInUp 0.5s ease-out;
 }
 
-.home-wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    /* Ajustement hauteur pour mobile */
-    min-height: 80vh; 
-    min-height: 80dvh;
+/* === SEPARATORS === */
+.separator-icon {
+    margin: 3rem 0;
+    opacity: 0.8;
+}
+.separator-icon::before, .separator-icon::after {
+    background: linear-gradient(to right, transparent, antiquewhite, transparent);
+    height: 1px;
+    width: 30%;
+}
+.separator-icon span {
+    font-size: 1.5rem;
+    color: antiquewhite;
+    vertical-align: middle;
 }
 
-/* === MEDIA QUERIES SPÉCIFIQUES PETITS ECRANS (Type Z Flip / S22) === */
+/* Zoom Modal */
+.image-modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); }
+.image-modal.active { display: flex; align-items: center; justify-content: center; animation: fadeInUp 0.3s; }
+.image-modal-content img { max-height: 90vh; max-width: 95vw; border: none; box-shadow: 0 0 30px rgba(0,0,0,0.8); }
+.image-modal-close { position: absolute; top: 20px; right: 20px; color: white; font-size: 2rem; z-index: 2001; }
+
+/* === MOBILE RESPONSIVE === */
 @media (max-width: 400px) {
-    h1 { font-size: 2.5rem; }
-    h2 { font-size: 1.3rem; }
-    p { font-size: 1rem; }
-    
-    .container { 
-        padding-left: 1rem; 
-        padding-right: 1rem; 
-    }
-    
-    .extract { padding: 1rem; }
-    
-    .button {
-        padding: 12px 20px;
-        width: 100%; /* Le bouton prend toute la largeur dispo */
-    }
-    
-    .button a { font-size: 1rem; }
+    h1 { font-size: 2.2rem; }
+    h3 { font-size: 1.4rem; }
+    .container { padding: 2rem 1rem 7rem 1rem; }
+    .book-cover { max-width: 70%; }
+    .extract p::first-letter { font-size: 3rem; }
 }
