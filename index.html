@@ -14,5 +14,39 @@
             <h2>La Voir Et La Lire</h2>
         </div>
     </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
+
+    <div class="nav-overlay" id="navOverlay">
+        <ul class="nav-links">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="QR1.html">1. Hervé Le Corre</a></li>
+            <li><a href="QR2.html">2. Virginie Grimaldi</a></li>
+            <li><a href="QR3.html">3. M-L. Hubert Nasser</a></li>
+            <li><a href="QR4.html">4. Le Défi Photo</a></li>
+            <li><a href="QR5.html">5. S. Lambert Mesguich</a></li>
+            <li><a href="QR6.html">6. Joan Ganhaire</a></li>
+            <li><a href="QR7.html">7. Châteaux Bordeaux</a></li>
+        </ul>
+    </div>
+
+    <script>
+        const navToggle = document.getElementById('navToggle');
+        const navOverlay = document.getElementById('navOverlay');
+
+        // Au clic sur le bouton burger
+        navToggle.addEventListener('click', () => {
+            navOverlay.classList.toggle('active');
+            // Change l'icône de ☰ à ✕ (fermer)
+            navToggle.innerHTML = navOverlay.classList.contains('active') ? '✕' : '☰';
+        });
+
+        // (Optionnel) Ferme le menu si on clique sur un lien
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navOverlay.classList.remove('active');
+                navToggle.innerHTML = '☰';
+            });
+        });
+    </script>
 </body>
 </html>
